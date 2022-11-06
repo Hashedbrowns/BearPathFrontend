@@ -144,7 +144,13 @@
               event.preventDefault()
               console.log('start', start, 'to', end)
               api_endpoint = 'http://uofadirections.herokuapp.com/api'
-              axios.get(`${api_endpoint}?start=${start}&end=${end}`).then((response) => {
+              axios.get(`${api_endpoint}?start=${start}&end=${end}`, {
+                headers: {
+                  "Access-Control-Allow-Origin":"*",
+                  "Access-Control-Allow-Headers":"X-Requested-With, Content-Type",
+                  "Content-Type": "application/json"
+                }
+              }).then((response) => {
                 // do stuff
                 console.log(response)
                 polyline_response = response.polyline
@@ -171,7 +177,13 @@
               end2 = document.getElementById('to2').value
               event.preventDefault()
               api_endpoint = 'http://uofadirections.herokuapp.com/api'
-              axios.get(`${api_endpoint}?start=${start2}&end=${end2}`).then(() => {
+              axios.get(`${api_endpoint}?start=${start2}&end=${end2}`, {
+                headers: {
+                  "Access-Control-Allow-Origin":"*",
+                  "Access-Control-Allow-Headers":"X-Requested-With, Content-Type",
+                  "Content-Type": "application/json"
+                }
+              }).then(() => {
                 // do stuff
                 console.log(response)
                 polyline_response = response.polyline
