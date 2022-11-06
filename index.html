@@ -116,82 +116,13 @@
             zoom: 15,
             }
           );
+          // begin example
           const response = {
-              "total_dist": 0.19915719580104177,
-              "route": [
-                {
-                  "pt1": {
-                    "id": 0,
-                    "name": "CCIS-Left 1",
-                    "loc": [
-                      53.527979666330495,
-                      -113.52624824052
-                    ]
-                  },
-                  "pt2": {
-                    "id": 75,
-                    "name": "CCIS-ped_ESB",
-                    "loc": [
-                      53.528130630743696,
-                      -113.524628485477
-                    ]
-                  },
-                  "dist": 0.1084037858558803,
-                  "polyline": "{tueIb|sT]cI"
-                },
-                {
-                  "pt1": {
-                    "id": 75,
-                    "name": "CCIS-ped_ESB",
-                    "loc": [
-                      53.528130630743696,
-                      -113.524628485477
-                    ]
-                  },
-                  "pt2": {
-                    "id": 76,
-                    "name": "ESB-ped_CCIS",
-                    "loc": [
-                      53.5281458783524,
-                      -113.524440569265
-                    ]
-                  },
-                  "dist": 0.012539885220766898,
-                  "polyline": "yuueI|w{sTCe@"
-                },
-                {
-                  "pt1": {
-                    "id": 76,
-                    "name": "ESB-ped_CCIS",
-                    "loc": [
-                      53.5281458783524,
-                      -113.524440569265
-                    ]
-                  },
-                  "pt2": {
-                    "id": 12,
-                    "name": "ESB-North",
-                    "loc": [
-                      53.5282826201709,
-                      -113.523280213706
-                    ]
-                  },
-                  "dist": 0.07821352472439458,
-                  "polyline": "wvueIno{sTXfF"
-                }
-              ],
               "polyline": "kaueIh`{sTIZEd@Ab@{@nAi@nA?Vo@@MBc@CGAENe@|A?d@?f@@jGQ?yApBD??f@I?oAnD?HL?OxBAJAn@@@Gn@GbA?hAAXYPFRaA`D"
             }
             polyline_response = response.polyline
-            console.log('polyline', polyline_response)
-            // console.log('function', google.maps.geometry)
             
             var decoded_route = google.maps.geometry.encoding.decodePath(polyline_response)
-            // var decoded_route2 = Polyline.encoded.decode(polyline_response)
-            // var decoded_route = google.maps.geometry.encoding.decodePath(polyline_response)
-            console.log(decoded_route)
-            console.log(decoded_route.toString())
-            // console.log(decoded_route2)
 
             const path = new google.maps.Polyline({
               path: decoded_route,
@@ -202,6 +133,70 @@
             })
 
             path.setMap(map);
+            // end example
+
+            form = document.getElementById('superMegaSearchForm')
+            start = document.getElementById('from').value
+            end = document.getElementById('to').value
+            form2 = document.getElementById('superMegaSearchForm2')
+            start2 = document.getElementById('from2').value
+            end2 = document.getElementById('to2').value
+            
+            // Handle the click and submit event and disable the browsers default action
+            // Make calls to our backend and then handle the response.
+            const formSubmitHandler = (event) => {
+              event.preventDefault()
+              console.log('start', start, 'start2', start2, 'to', end, 'to2', end2)
+              api_endpoint = 'https://uofadirections.herokuapp.com/api'
+              axios.get(`${api_endpoint}?start=${start}&end=${end}`).then((response) => {
+                // do stuff
+                console.log(response)
+                polyline_response = response.polyline
+            
+                var decoded_route = google.maps.geometry.encoding.decodePath(polyline_response)
+
+                const path = new google.maps.Polyline({
+                  path: decoded_route,
+                  geodesic: true,
+                  strokeColor: "#FF0000",
+                  strokeOpacity: 1.0,
+                  strokeWeight: 2,
+                })
+
+                path.setMap(map);
+                console.log('from: ', from, 'to: ', to)
+                console.log('got that niiiiice response.');
+              })
+              console.log('hello i have prevented the default from happening');
+            }
+
+            const formSubmitHandler2 = (event) => {
+              event.preventDefault()
+              api_endpoint = 'https://uofadirections.herokuapp.com/api'
+              axios.get(`${api_endpoint}?start=${start2}&end=${end2}`).then(() => {
+                // do stuff
+                console.log(response)
+                polyline_response = response.polyline
+            
+                var decoded_route = google.maps.geometry.encoding.decodePath(polyline_response)
+
+                const path = new google.maps.Polyline({
+                  path: decoded_route,
+                  geodesic: true,
+                  strokeColor: "#FF0000",
+                  strokeOpacity: 1.0,
+                  strokeWeight: 2,
+                })
+
+                path.setMap(map);
+                console.log('from: ', from, 'to: ', to)
+                console.log('got that niiiiice response.');
+              })
+              console.log('hello i have prevented the default from happening');
+            }
+      
+            form.addEventListener('submit', formSubmitHandler, false)
+            form2.addEventListener('submit', formSubmitHandler2, false)
         }
         
 </script>
@@ -286,39 +281,7 @@
       </form>
       <script>
 
-        form = document.getElementById('superMegaSearchForm')
-        start = document.getElementById('from').value
-        end = document.getElementById('to').value
-        form2 = document.getElementById('superMegaSearchForm2')
-        start2 = document.getElementById('from2').value
-        end2 = document.getElementById('to2').value
-  
-        // Handle the click and submit event and disable the browsers default action
-        // Make calls to our backend and then handle the response.
-        const formSubmitHandler = (event) => {
-          event.preventDefault()
-          api_endpoint = 'https://uofadirections.herokuapp.com/api'
-          axios.get(`${api_endpoint}?start=${start}&end=${end}`).then(() => {
-            // do stuff
-            console.log('from: ', from, 'to: ', to)
-            console.log('got that niiiiice response.');
-          })
-          console.log('hello i have prevented the default from happening');
-        }
-
-        const formSubmitHandler2 = (event) => {
-          event.preventDefault()
-          api_endpoint = 'https://uofadirections.herokuapp.com/api'
-          axios.get(`${api_endpoint}?start=${start2}&end=${end2}`).then(() => {
-            // do stuff
-            console.log('from: ', from, 'to: ', to)
-            console.log('got that niiiiice response.');
-          })
-          console.log('hello i have prevented the default from happening');
-        }
-  
-        form.addEventListener('submit', formSubmitHandler, false)
-        form2.addEventListener('submit', formSubmitHandler2, false)
+        
   
       </script>
     </div>
