@@ -201,6 +201,9 @@
         form = document.getElementById('superMegaSearchForm')
         form2 = document.getElementById('superMegaSearchForm2')
 
+        let path
+        let previousPath = []
+
         // Handle the click and submit event and disable the browsers default action
         // Make calls to our backend and then handle the response.
         const formSubmitHandler = (event) => {
@@ -224,9 +227,12 @@
               strokeOpacity: 1.0,
               strokeWeight: 2,
             })
+            previousPath.forEach((path) => {
+              path.setMap(null)
+            })
 
-            path.setMap(null)
             path.setMap(map);
+            previousPath.push(path)
             console.log('from: ', from, 'to: ', to)
             console.log('got that niiiiice response.');
           })
@@ -254,13 +260,18 @@
               strokeOpacity: 1.0,
               strokeWeight: 2,
             })
+            previousPath.forEach((path) => {
+              path.setMap(null)
+            })
 
             path.setMap(map);
+            previousPath.push(path)
             console.log('from: ', from, 'to: ', to)
             console.log('got that niiiiice response.');
           })
           console.log('hello i have prevented the default from happening');
         }
+
   
         form.addEventListener('submit', formSubmitHandler, false)
         form2.addEventListener('submit', formSubmitHandler2, false)
