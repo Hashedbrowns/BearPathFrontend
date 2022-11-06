@@ -35,12 +35,18 @@ body {
 
 #footer {
   position: fixed;
-  height: 90px;
+
   bottom: 0px;
   width: 100%;
   background-color: white;
   z-index: 1000;
 }
-  
+
+@media (min-device-width: 450px) {
+  #footer {
+    display: none;
+  }
+}
+
   /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
 

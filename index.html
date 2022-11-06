@@ -101,28 +101,6 @@
       </form>
     </div>
     </nav>
-    <script>
-
-      form = document.getElementById('superMegaSearchForm')
-      start = document.getElementById('from').value
-      end = document.getElementById('to').value
-
-      // Handle the click and submit event and disable the browsers default action
-      // Make calls to our backend and then handle the response.
-      const formSubmitHandler = (event) => {
-        event.preventDefault()
-        api_endpoint = 'https://uofadirections.herokuapp.com/api'
-        axios.get(`${api_endpoint}?start=${start}&end=${end}`).then(() => {
-          // do stuff
-          console.log('from: ', from, 'to: ', to)
-          console.log('got that niiiiice response.');
-        })
-        console.log('hello i have prevented the default from happening');
-      }
-
-      form.addEventListener('submit', formSubmitHandler, false)
-
-    </script>
   </nav>
     <div id="map"></div>
     
@@ -313,9 +291,9 @@
       // })
     </script>
     </div>
-    <div id="footer">
-      <form class="form-inline mt-2 mt-md-0" style="display: flex" id="superMegaSearchForm">
-        <select class="form-select form-select-sm mr-sm-2 mt-3 mb-3 ml-2 mr-2" id="from">
+    <div id="footer" class="p-4">
+      <form class="form-inline mt-2 mt-md-0" id="superMegaSearchForm2">
+        <select class="form-select" id="from2">
           <option value='ADM'>Administration (ADM)</option>
           <option value='AF'>Agriculture Forestry Centre (AF)</option>
           <option value='ASH'>Assiniboia Hall (ASH)</option>
@@ -352,7 +330,7 @@
           <option value='TL'>Tory Building (TL)</option>
           <option value='VVC'>Van Vliet Complex (VVC)</option>
         </select>
-        <select class="form-select mr-sm-2 mt-3 mb-3 ml-2 mr-2" id="to">
+        <select class="form-select mt-2" id="to2">
           <option value='ADM'>Administration (ADM)</option>
           <option value='AF'>Agriculture Forestry Centre (AF)</option>
           <option value='ASH'>Assiniboia Hall (ASH)</option>
@@ -389,9 +367,45 @@
           <option value='TL'>Tory Building (TL)</option>
           <option value='VVC'>Van Vliet Complex (VVC)</option>
         </select>
-        <button class="btn btn-outline-success my-2 mr-sm-2" style="padding: 10px; margin: 10px"
-          type="submit">Search</button>
+        <button class="btn btn-outline-success w-100 mt-2" style="padding: 10px;" type="submit">Search</button>
       </form>
+      <script>
+
+        form = document.getElementById('superMegaSearchForm')
+        start = document.getElementById('from').value
+        end = document.getElementById('to').value
+        form2 = document.getElementById('superMegaSearchForm2')
+        start2 = document.getElementById('from2').value
+        end2 = document.getElementById('to2').value
+  
+        // Handle the click and submit event and disable the browsers default action
+        // Make calls to our backend and then handle the response.
+        const formSubmitHandler = (event) => {
+          event.preventDefault()
+          api_endpoint = 'https://uofadirections.herokuapp.com/api'
+          axios.get(`${api_endpoint}?start=${start}&end=${end}`).then(() => {
+            // do stuff
+            console.log('from: ', from, 'to: ', to)
+            console.log('got that niiiiice response.');
+          })
+          console.log('hello i have prevented the default from happening');
+        }
+
+        const formSubmitHandler2 = (event) => {
+          event.preventDefault()
+          api_endpoint = 'https://uofadirections.herokuapp.com/api'
+          axios.get(`${api_endpoint}?start=${start2}&end=${end2}`).then(() => {
+            // do stuff
+            console.log('from: ', from, 'to: ', to)
+            console.log('got that niiiiice response.');
+          })
+          console.log('hello i have prevented the default from happening');
+        }
+  
+        form.addEventListener('submit', formSubmitHandler, false)
+        form2.addEventListener('submit', formSubmitHandler2, false)
+  
+      </script>
     </div>
 </body>
 
