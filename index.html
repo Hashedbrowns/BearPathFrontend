@@ -382,7 +382,7 @@
         // Make calls to our backend and then handle the response.
         const formSubmitHandler = (event) => {
           event.preventDefault()
-          api_endpoint = 'https://uofadirections.herokuapp.com/api'
+          api_endpoint = '127.0.0.1:8000/api'
           axios.get(`${api_endpoint}?start=${start}&end=${end}`).then(() => {
             // do stuff
             console.log('from: ', from, 'to: ', to)
@@ -393,7 +393,7 @@
 
         const formSubmitHandler2 = (event) => {
           event.preventDefault()
-          api_endpoint = 'https://uofadirections.herokuapp.com/api'
+          api_endpoint = '127.0.0.1:8000/api'
           axios.get(`${api_endpoint}?start=${start2}&end=${end2}`).then(() => {
             // do stuff
             console.log('from: ', from, 'to: ', to)
