@@ -143,7 +143,7 @@
               end = document.getElementById('to').value
               event.preventDefault()
               console.log('start', start, 'to', end)
-              api_endpoint = 'https://uofadirections.herokuapp.com/api'
+              api_endpoint = 'http://uofadirections.herokuapp.com/api'
               axios.get(`${api_endpoint}?start=${start}&end=${end}`).then((response) => {
                 // do stuff
                 console.log(response)
@@ -170,7 +170,7 @@
               start2 = document.getElementById('from2').value
               end2 = document.getElementById('to2').value
               event.preventDefault()
-              api_endpoint = 'https://uofadirections.herokuapp.com/api'
+              api_endpoint = 'http://uofadirections.herokuapp.com/api'
               axios.get(`${api_endpoint}?start=${start2}&end=${end2}`).then(() => {
                 // do stuff
                 console.log(response)
