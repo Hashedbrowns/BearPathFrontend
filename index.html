@@ -11,6 +11,7 @@
     crossorigin="anonymous"></script>
   <link rel="stylesheet" href="./main.css">
   <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+  <script src="Polyline.encoded.js"></script>
 </head>
 
 <body>
@@ -103,8 +104,9 @@
     </nav>
   </nav>
     <div id="map"></div>
-    
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUtl5270Zd73fBYTG5aoPNknA9rs3SRfs&callback=initMap"></script>
+  </div>
+  <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=geometry,places&ext=.js"></script>   -->
+  <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=geometry,places&ext=.js&key=AIzaSyCUtl5270Zd73fBYTG5aoPNknA9rs3SRfs&callback=initMap"></script>
     <script>
         let map;
 
@@ -112,185 +114,98 @@
           map = new google.maps.Map(document.getElementById("map"), {
             center: { lat: 53.52656767335504, lng: -113.5255622404301 },
             zoom: 15,
-            styles: [
-        { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
-        { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
-        { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
-        {
-          featureType: "administrative.locality",
-          elementType: "labels.text.fill",
-          stylers: [{ color: "#d59563" }],
-        },
-        {
-          featureType: "poi",
-          elementType: "labels.text.fill",
-          stylers: [{ color: "#d59563" }],
-        },
-        {
-          featureType: "poi.park",
-          elementType: "geometry",
-          stylers: [{ color: "#263c3f" }],
-        },
-        {
-          featureType: "poi.park",
-          elementType: "labels.text.fill",
-          stylers: [{ color: "#6b9a76" }],
-        },
-        {
-          featureType: "road",
-          elementType: "geometry",
-          stylers: [{ color: "#38414e" }],
-        },
-        {
-          featureType: "road",
-          elementType: "geometry.stroke",
-          stylers: [{ color: "#212a37" }],
-        },
-        {
-          featureType: "road",
-          elementType: "labels.text.fill",
-          stylers: [{ color: "#9ca5b3" }],
-        },
-        {
-          featureType: "road.highway",
-          elementType: "geometry",
-          stylers: [{ color: "#746855" }],
-        },
-        {
-          featureType: "road.highway",
-          elementType: "geometry.stroke",
-          stylers: [{ color: "#1f2835" }],
-        },
-        {
-          featureType: "road.highway",
-          elementType: "labels.text.fill",
-          stylers: [{ color: "#f3d19c" }],
-        },
-        {
-          featureType: "transit",
-          elementType: "geometry",
-          stylers: [{ color: "#2f3948" }],
-        },
-        {
-          featureType: "transit.station",
-          elementType: "labels.text.fill",
-          stylers: [{ color: "#d59563" }],
-        },
-        {
-          featureType: "water",
-          elementType: "geometry",
-          stylers: [{ color: "#17263c" }],
-        },
-        {
-          featureType: "water",
-          elementType: "labels.text.fill",
-          stylers: [{ color: "#515c6d" }],
-        },
-        {
-          featureType: "water",
-          elementType: "labels.text.stroke",
-          stylers: [{ color: "#17263c" }],
-        },
-      ],
-    }
-  );
-}
+            }
+          );
+          const response = {
+              "total_dist": 0.19915719580104177,
+              "route": [
+                {
+                  "pt1": {
+                    "id": 0,
+                    "name": "CCIS-Left 1",
+                    "loc": [
+                      53.527979666330495,
+                      -113.52624824052
+                    ]
+                  },
+                  "pt2": {
+                    "id": 75,
+                    "name": "CCIS-ped_ESB",
+                    "loc": [
+                      53.528130630743696,
+                      -113.524628485477
+                    ]
+                  },
+                  "dist": 0.1084037858558803,
+                  "polyline": "{tueIb|sT]cI"
+                },
+                {
+                  "pt1": {
+                    "id": 75,
+                    "name": "CCIS-ped_ESB",
+                    "loc": [
+                      53.528130630743696,
+                      -113.524628485477
+                    ]
+                  },
+                  "pt2": {
+                    "id": 76,
+                    "name": "ESB-ped_CCIS",
+                    "loc": [
+                      53.5281458783524,
+                      -113.524440569265
+                    ]
+                  },
+                  "dist": 0.012539885220766898,
+                  "polyline": "yuueI|w{sTCe@"
+                },
+                {
+                  "pt1": {
+                    "id": 76,
+                    "name": "ESB-ped_CCIS",
+                    "loc": [
+                      53.5281458783524,
+                      -113.524440569265
+                    ]
+                  },
+                  "pt2": {
+                    "id": 12,
+                    "name": "ESB-North",
+                    "loc": [
+                      53.5282826201709,
+                      -113.523280213706
+                    ]
+                  },
+                  "dist": 0.07821352472439458,
+                  "polyline": "wvueIno{sTXfF"
+                }
+              ],
+              "polyline": "kaueIh`{sTIZEd@Ab@{@nAi@nA?Vo@@MBc@CGAENe@|A?d@?f@@jGQ?yApBD??f@I?oAnD?HL?OxBAJAn@@@Gn@GbA?hAAXYPFRaA`D"
+            }
+            polyline_response = response.polyline
+            console.log('polyline', polyline_response)
+            // console.log('function', google.maps.geometry)
+            
+            var decoded_route = google.maps.geometry.encoding.decodePath(polyline_response)
+            // var decoded_route2 = Polyline.encoded.decode(polyline_response)
+            // var decoded_route = google.maps.geometry.encoding.decodePath(polyline_response)
+            console.log(decoded_route)
+            console.log(decoded_route.toString())
+            // console.log(decoded_route2)
 
-        window.initMap = initMap;
-    </script>
-    <script>
-      const response = {
-        total_dist: 0.30086014678074685,
-        route: [
-          {
-            pt1: {
-              id: 0,
-              name: "CCIS-Left 1",
-              loc: [53.527979666330495, -113.52624824052],
-            },
-            pt2: {
-              id: 4,
-              name: "ATH-Left",
-              loc: [53.5270417441689, -113.526625965725],
-            },
-            dist: 0.10727270513267456,
-            polyline: "{tueI`b|sTzDjA",
-          },
-          {
-            pt1: {
-              id: 4,
-              name: "ATH-Left",
-              loc: [53.5270417441689, -113.526625965725],
-            },
-            pt2: {
-              id: 2,
-              name: "ATH-Right",
-              loc: [53.5263922638098, -113.52667388707],
-            },
-            dist: 0.02169331404143356,
-            polyline: "}jueItd|sTaCG",
-          },
-          {
-            pt1: {
-              id: 2,
-              name: "ATH-Right",
-              loc: [53.5263922638098, -113.52667388707],
-            },
-            pt2: {
-              id: 18,
-              name: "SUB-North East",
-              loc: [53.5254617484598, -113.526841563672],
-            },
-            dist: 0.10409319564316637,
-            polyline: "}jueItd|sTxD`@",
-          },
-          {
-            pt1: {
-              id: 18,
-              name: "SUB-North East",
-              loc: [53.5254617484598, -113.526841563672],
-            },
-            pt2: {
-              id: 19,
-              name: "SUB-South West",
-              loc: [53.52496412041231, -113.527442334603],
-            },
-            dist: 0.020439195042359744,
-            polyline: "ceueIve|sTbBvB",
-          },
-          {
-            pt1: {
-              id: 19,
-              name: "SUB-South West",
-              loc: [53.52496412041231, -113.527442334603],
-            },
-            pt2: {
-              id: 38,
-              name: "VVC-North",
-              loc: [53.5245800291838, -113.527133164879],
-            },
-            dist: 0.04736173692111262,
-            polyline: "_bueIni|sTjA}@",
-          },
-        ],
-      };
-  
-      // response.route.forEach((element, index, array) => {
-      //   const coordinates = element.polyline
-  
-      //   const walkPath = new google.maps.Polyline({
-      //     path: coordinates,
-      //     geodesic: true,
-      //     strokeColor: "#FF0000",
-      //     strokeOpacity: 1.0,
-      //     strokeWidth: 2,
-      //   });
-  
-      //   walkPath.setMap(map);
-  
-      // })
-    </script>
-    </div>
+            const path = new google.maps.Polyline({
+              path: decoded_route,
+              geodesic: true,
+              strokeColor: "#FF0000",
+              strokeOpacity: 1.0,
+              strokeWeight: 2,
+            })
+
+            path.setMap(map);
+        }
+        
+</script>
+    
     <div id="footer" class="p-4">
       <form class="form-inline mt-2 mt-md-0" id="superMegaSearchForm2">
         <select class="form-select" id="from2">
