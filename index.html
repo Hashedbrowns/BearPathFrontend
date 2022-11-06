@@ -34,8 +34,8 @@
           <option value='CME'>Chemical/Materials Engineering Building (CME)</option>
           <option value='CSC'>Computing Science Centre (CSC)</option>
           <option value='DICE'>Donadeo Innovation Centre for Engineering (DICE)</option>
-          <option value='ED_N'>Education Centre North (ED-N)</option>
-          <option value='ED_S'>Education Centre South (ED-S)</option>
+          <option value='ED-N'>Education Centre North (ED-N)</option>
+          <option value='ED-S'>Education Centre South (ED-S)</option>
           <option value='ESB'>Earth Sciences Building (ESB)</option>
           <option value='ETLC'>Engineering Teaching and Learning Complex (ETLC)</option>
           <option value='FAB'>Fine Arts Building (FAB)</option>
@@ -71,8 +71,8 @@
           <option value='CME'>Chemical/Materials Engineering Building (CME)</option>
           <option value='CSC'>Computing Science Centre (CSC)</option>
           <option value='DICE'>Donadeo Innovation Centre for Engineering (DICE)</option>
-          <option value='ED_N'>Education Centre North (ED-N)</option>
-          <option value='ED_S'>Education Centre South (ED-S)</option>
+          <option value='ED-N'>Education Centre North (ED-N)</option>
+          <option value='ED-S'>Education Centre South (ED-S)</option>
           <option value='ESB'>Earth Sciences Building (ESB)</option>
           <option value='ETLC'>Engineering Teaching and Learning Complex (ETLC)</option>
           <option value='FAB'>Fine Arts Building (FAB)</option>
@@ -104,7 +104,7 @@
   </nav>
     <div id="map"></div>
     
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUtl5270Zd73fBYTG5aoPNknA9rs3SRfs&callback=initMap"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=geometry,places&ext=.js&key=AIzaSyCUtl5270Zd73fBYTG5aoPNknA9rs3SRfs&callback=initMap"></script>
     <script>
         let map;
 
@@ -112,183 +112,10 @@
           map = new google.maps.Map(document.getElementById("map"), {
             center: { lat: 53.52656767335504, lng: -113.5255622404301 },
             zoom: 15,
-            styles: [
-        { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
-        { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
-        { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
-        {
-          featureType: "administrative.locality",
-          elementType: "labels.text.fill",
-          stylers: [{ color: "#d59563" }],
-        },
-        {
-          featureType: "poi",
-          elementType: "labels.text.fill",
-          stylers: [{ color: "#d59563" }],
-        },
-        {
-          featureType: "poi.park",
-          elementType: "geometry",
-          stylers: [{ color: "#263c3f" }],
-        },
-        {
-          featureType: "poi.park",
-          elementType: "labels.text.fill",
-          stylers: [{ color: "#6b9a76" }],
-        },
-        {
-          featureType: "road",
-          elementType: "geometry",
-          stylers: [{ color: "#38414e" }],
-        },
-        {
-          featureType: "road",
-          elementType: "geometry.stroke",
-          stylers: [{ color: "#212a37" }],
-        },
-        {
-          featureType: "road",
-          elementType: "labels.text.fill",
-          stylers: [{ color: "#9ca5b3" }],
-        },
-        {
-          featureType: "road.highway",
-          elementType: "geometry",
-          stylers: [{ color: "#746855" }],
-        },
-        {
-          featureType: "road.highway",
-          elementType: "geometry.stroke",
-          stylers: [{ color: "#1f2835" }],
-        },
-        {
-          featureType: "road.highway",
-          elementType: "labels.text.fill",
-          stylers: [{ color: "#f3d19c" }],
-        },
-        {
-          featureType: "transit",
-          elementType: "geometry",
-          stylers: [{ color: "#2f3948" }],
-        },
-        {
-          featureType: "transit.station",
-          elementType: "labels.text.fill",
-          stylers: [{ color: "#d59563" }],
-        },
-        {
-          featureType: "water",
-          elementType: "geometry",
-          stylers: [{ color: "#17263c" }],
-        },
-        {
-          featureType: "water",
-          elementType: "labels.text.fill",
-          stylers: [{ color: "#515c6d" }],
-        },
-        {
-          featureType: "water",
-          elementType: "labels.text.stroke",
-          stylers: [{ color: "#17263c" }],
-        },
-      ],
-    }
-  );
-}
-
+              }
+            );
+          }
         window.initMap = initMap;
-    </script>
-    <script>
-      const response = {
-        total_dist: 0.30086014678074685,
-        route: [
-          {
-            pt1: {
-              id: 0,
-              name: "CCIS-Left 1",
-              loc: [53.527979666330495, -113.52624824052],
-            },
-            pt2: {
-              id: 4,
-              name: "ATH-Left",
-              loc: [53.5270417441689, -113.526625965725],
-            },
-            dist: 0.10727270513267456,
-            polyline: "{tueI`b|sTzDjA",
-          },
-          {
-            pt1: {
-              id: 4,
-              name: "ATH-Left",
-              loc: [53.5270417441689, -113.526625965725],
-            },
-            pt2: {
-              id: 2,
-              name: "ATH-Right",
-              loc: [53.5263922638098, -113.52667388707],
-            },
-            dist: 0.02169331404143356,
-            polyline: "}jueItd|sTaCG",
-          },
-          {
-            pt1: {
-              id: 2,
-              name: "ATH-Right",
-              loc: [53.5263922638098, -113.52667388707],
-            },
-            pt2: {
-              id: 18,
-              name: "SUB-North East",
-              loc: [53.5254617484598, -113.526841563672],
-            },
-            dist: 0.10409319564316637,
-            polyline: "}jueItd|sTxD`@",
-          },
-          {
-            pt1: {
-              id: 18,
-              name: "SUB-North East",
-              loc: [53.5254617484598, -113.526841563672],
-            },
-            pt2: {
-              id: 19,
-              name: "SUB-South West",
-              loc: [53.52496412041231, -113.527442334603],
-            },
-            dist: 0.020439195042359744,
-            polyline: "ceueIve|sTbBvB",
-          },
-          {
-            pt1: {
-              id: 19,
-              name: "SUB-South West",
-              loc: [53.52496412041231, -113.527442334603],
-            },
-            pt2: {
-              id: 38,
-              name: "VVC-North",
-              loc: [53.5245800291838, -113.527133164879],
-            },
-            dist: 0.04736173692111262,
-            polyline: "_bueIni|sTjA}@",
-          },
-        ],
-      };
-  
-      // response.route.forEach((element, index, array) => {
-      //   const coordinates = element.polyline
-  
-      //   const walkPath = new google.maps.Polyline({
-      //     path: coordinates,
-      //     geodesic: true,
-      //     strokeColor: "#FF0000",
-      //     strokeOpacity: 1.0,
-      //     strokeWidth: 2,
-      //   });
-  
-      //   walkPath.setMap(map);
-  
-      // })
     </script>
     </div>
     <div id="footer" class="p-4">
@@ -372,19 +199,34 @@
       <script>
 
         form = document.getElementById('superMegaSearchForm')
-        start = document.getElementById('from').value
-        end = document.getElementById('to').value
         form2 = document.getElementById('superMegaSearchForm2')
-        start2 = document.getElementById('from2').value
-        end2 = document.getElementById('to2').value
-  
+
         // Handle the click and submit event and disable the browsers default action
         // Make calls to our backend and then handle the response.
         const formSubmitHandler = (event) => {
           event.preventDefault()
-          api_endpoint = '127.0.0.1:8000/api'
-          axios.get(`${api_endpoint}?start=${start}&end=${end}`).then(() => {
+          start = document.getElementById('from').value
+          end = document.getElementById('to').value
+          api_endpoint = 'http://127.0.0.1:8000/api'
+          axios.get(`${api_endpoint}?start=${start}&end=${end}`).then((response) => {
             // do stuff
+            console.log(response)
+            polyline_response = response.polyline
+            console.log(response)
+            console.log(response.data)
+            console.log(response.data.polyline)
+            var decoded_route = google.maps.geometry.encoding.decodePath(response.data.polyline)
+
+            const path = new google.maps.Polyline({
+              path: decoded_route,
+              geodesic: true,
+              strokeColor: "#FF0000",
+              strokeOpacity: 1.0,
+              strokeWeight: 2,
+            })
+
+            path.setMap(null)
+            path.setMap(map);
             console.log('from: ', from, 'to: ', to)
             console.log('got that niiiiice response.');
           })
@@ -393,9 +235,27 @@
 
         const formSubmitHandler2 = (event) => {
           event.preventDefault()
-          api_endpoint = '127.0.0.1:8000/api'
-          axios.get(`${api_endpoint}?start=${start2}&end=${end2}`).then(() => {
+          start2 = document.getElementById('from2').value
+          end2 = document.getElementById('to2').value
+          api_endpoint = 'http://127.0.0.1:8000/api'
+          axios.get(`${api_endpoint}?start=${start2}&end=${end2}`).then((response) => {
             // do stuff
+            console.log(response)
+            console.log(response.data)
+            console.log(response.data.polyline)
+            polyline_response = response.polyline
+        
+            var decoded_route = google.maps.geometry.encoding.decodePath(polyline_response)
+
+            const path = new google.maps.Polyline({
+              path: decoded_route,
+              geodesic: true,
+              strokeColor: "#FF0000",
+              strokeOpacity: 1.0,
+              strokeWeight: 2,
+            })
+
+            path.setMap(map);
             console.log('from: ', from, 'to: ', to)
             console.log('got that niiiiice response.');
           })
