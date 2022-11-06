@@ -11,7 +11,6 @@
     crossorigin="anonymous"></script>
   <link rel="stylesheet" href="./main.css">
   <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
-  <script src="Polyline.encoded.js"></script>
 </head>
 
 <body>
@@ -135,18 +134,15 @@
             path.setMap(map);
             // end example
 
-            form = document.getElementById('superMegaSearchForm')
-            start = document.getElementById('from').value
-            end = document.getElementById('to').value
-            form2 = document.getElementById('superMegaSearchForm2')
-            start2 = document.getElementById('from2').value
-            end2 = document.getElementById('to2').value
+            
             
             // Handle the click and submit event and disable the browsers default action
             // Make calls to our backend and then handle the response.
             const formSubmitHandler = (event) => {
+              start = document.getElementById('from').value
+              end = document.getElementById('to').value
               event.preventDefault()
-              console.log('start', start, 'start2', start2, 'to', end, 'to2', end2)
+              console.log('start', start, 'to', end)
               api_endpoint = 'https://uofadirections.herokuapp.com/api'
               axios.get(`${api_endpoint}?start=${start}&end=${end}`).then((response) => {
                 // do stuff
@@ -171,6 +167,8 @@
             }
 
             const formSubmitHandler2 = (event) => {
+              start2 = document.getElementById('from2').value
+              end2 = document.getElementById('to2').value
               event.preventDefault()
               api_endpoint = 'https://uofadirections.herokuapp.com/api'
               axios.get(`${api_endpoint}?start=${start2}&end=${end2}`).then(() => {
@@ -194,8 +192,9 @@
               })
               console.log('hello i have prevented the default from happening');
             }
-      
+            form = document.getElementById('superMegaSearchForm')
             form.addEventListener('submit', formSubmitHandler, false)
+            form2 = document.getElementById('superMegaSearchForm2')
             form2.addEventListener('submit', formSubmitHandler2, false)
         }
         
