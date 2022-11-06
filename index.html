@@ -247,11 +247,11 @@
           axios.get(`${api_endpoint}?start=${start2}&end=${end2}`).then((response) => {
             // do stuff
             console.log(response)
+            polyline_response = response.polyline
+            console.log(response)
             console.log(response.data)
             console.log(response.data.polyline)
-            polyline_response = response.polyline
-        
-            var decoded_route = google.maps.geometry.encoding.decodePath(polyline_response)
+            var decoded_route = google.maps.geometry.encoding.decodePath(response.data.polyline)
 
             const path = new google.maps.Polyline({
               path: decoded_route,
